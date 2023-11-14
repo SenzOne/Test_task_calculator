@@ -5,8 +5,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class Calculator {
-    RomanNumeral romanNumeral;
-    private String input;
+    private final String input;
     private int a;
     private int b;
 
