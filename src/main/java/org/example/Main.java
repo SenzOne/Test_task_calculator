@@ -11,7 +11,7 @@ public class Main {
         Calculator calculator3 = new Calculator("III + 3");
         System.out.println(calculator3.calculate());
 
-        Calculator calculator4 = new Calculator("IV + IV");
+        Calculator calculator4 = new Calculator("4 + IV");
         System.out.println(calculator4.calculate());
 
 

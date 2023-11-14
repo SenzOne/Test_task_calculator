@@ -23,20 +23,16 @@ public class Calculator {
         char charB = inputArr[2].charAt(0);
 
         try {
-            if (Character.isDigit(charA)) {
+            if (Character.isDigit(charA) && Character.isDigit(charB)) {
                 this.a = Character.getNumericValue(charA);
+                this.b = Character.getNumericValue(charB);
+            } else if ((Character.isDigit(charA) ^ Character.isDigit(charB))) {
+                throw new Exception("Используются одновременно разные системы счисления");
             } else {
                 RomanNumeral romanNumeral1 = RomanNumeral.valueOf(inputArr[0]);
                 this.a = romanNumeral1.getNum();
-            }
-
-            if (Character.isDigit(charB)) {
-                this.b = Character.getNumericValue(charB);
-            } else {
-                RomanNumeral romanNumeral1 = RomanNumeral.valueOf(inputArr[0]);
                 this.b = romanNumeral1.getNum();
             }
-
         } catch (Exception e) {
             System.out.println("Ошибка: " + e);
         }
