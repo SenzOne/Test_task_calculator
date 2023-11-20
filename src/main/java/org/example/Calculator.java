@@ -75,15 +75,15 @@ public class Calculator {
      */
     public void calculate(){
         String[] inputArr = input.split(" ");
-        char operator;
+        char operator = inputArr[1].charAt(0);
         if (canConvertToNumber(inputArr[0], inputArr[2]) && containsOperator(inputArr[1])){
-            operator = inputArr[1].charAt(0);
+//            operator = inputArr[1].charAt(0);
             this.a =  Integer.parseInt(inputArr[0]);
             this.b =  Integer.parseInt(inputArr[2]);
             System.out.println(calculation(operator));
 
         } else if (areBothEnums(inputArr[0], inputArr[2]) && containsOperator(inputArr[1]) ){
-            operator = inputArr[1].charAt(0);
+//            operator = inputArr[1].charAt(0);
             RomanNumeral romanNumeral = RomanNumeral.valueOf(inputArr[0]);
             RomanNumeral romanNumeral1 = RomanNumeral.valueOf(inputArr[2]);
             this.a = romanNumeral.getNum();
@@ -94,13 +94,19 @@ public class Calculator {
     }
 
 
+    /**
+     * Выполняет операцию над двумя числами в зависимости от переданного оператора.
+     * @param operator Знак операции (+, -, *, /).
+     * @return Результат операции над числами в виде строки.
+     * @throws IllegalArgumentException если передан неизвестный оператор.
+     */
     private String calculation(char operator) {
         return switch (operator) {
             case '+' -> sum(a, b);
             case '-' -> difference(a, b);
             case '/' -> division(a, b);
             case '*' -> multiplication(a, b);
-            default -> null;
+            default ->  throw new IllegalArgumentException("Неизвестный оператор: " + operator);
         };
     }
 
@@ -116,13 +122,19 @@ public class Calculator {
         return String.format("%s", a * b);
     }
 
+
+    /**
+     * Выполняет деление двух чисел a на b.
+     * @param a Делимое число.
+     * @param b Делитель.
+     * @return Результат деления a на b в виде строки.
+     * @throws ArithmeticException если делитель равен нулю.
+     */
     private String division(int a, int b) {
-        try {
-            return String.format("%s", a / b);
-        } catch (Exception e) {
-            System.out.println("Ошибка " + e);
+        if (b == 0) {
+            throw new ArithmeticException("Деление на ноль");
         }
-        return null;
+        return String.format("%s", a / b);
     }
 
 //    public String prompt(){
