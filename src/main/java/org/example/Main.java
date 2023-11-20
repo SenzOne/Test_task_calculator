@@ -8,7 +8,7 @@ public class Main {
         Calculator calculator2 = new Calculator("10 + 9");
         calculator2.calculate();
 
-        Calculator calculator3 = new Calculator("10 + 9");
+        Calculator calculator3 = new Calculator();
         calculator3.calculate();
     }
 }
