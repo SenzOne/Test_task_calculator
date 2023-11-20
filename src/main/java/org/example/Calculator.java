@@ -8,7 +8,7 @@ import java.util.Scanner;
 /**
  * Класс Calculator выполняет математические операции как для арабских, так и для римских чисел.
  */
-public class Calculator {
+class Calculator {
     // Поля класса
     private final String input;
     private int a;
