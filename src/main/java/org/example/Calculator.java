@@ -4,48 +4,78 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Scanner;
 
+
+/**
+ * Класс Calculator выполняет математические операции как для арабских, так и для римских чисел.
+ */
 public class Calculator {
+    // Поля класса
     private final String input;
     private int a;
     private int b;
-    private char operator;
-    private char charA;
-    private char charB;
 
 
+    /**
+     * Конструктор класса Calculator.
+     * @param input Строка с математическим выражением.
+     */
     public Calculator(String input) {
         this.input = input;
     }
 
+    /**
+     * Метод containsOperator проверяет наличие оператора в строке.
+     * @param str Строка для проверки.
+     * @return Возвращает true, если строка содержит оператор (+, -, *, /), иначе false.
+     */
     public boolean containsOperator(String str) {
-        return str.matches(".*[+\\-*/].*"); // Проверяем, содержит ли строка только римские цифры
+        return str.matches(".*[+\\-*/].*");
     }
 
 
+    /**
+     * Метод canConvertToNumber проверяет возможность преобразования строк в числа.
+     * @param a Строка с числом a.
+     * @param b Строка с числом b.
+     * @return Возвращает true, если обе строки могут быть преобразованы в числа, иначе false.
+     */
     public boolean canConvertToNumber(String a, String b) {
         try {
             Integer.parseInt(a);
             Integer.parseInt(b);
-            return true; // Возвращаем true, если преобразование прошло успешно
+            return true;
         } catch (NumberFormatException e) {
-            return false; // Возвращаем false в случае ошибки преобразования
+            return false;
         }
     }
 
+
+    /**
+     * Метод areBothEnums проверяет, являются ли обе строки римскими числами (перечисления RomanNumeral).
+     * @param str1 Первая строка для проверки.
+     * @param str2 Вторая строка для проверки.
+     * @return Возвращает true, если обе строки являются римскими числами, иначе false.
+     */
     public boolean areBothEnums(String str1, String str2) {
         try {
-            // Попытка получения объекта enum для обеих строк
+
             Enum.valueOf(RomanNumeral.class, str1);
             Enum.valueOf(RomanNumeral.class, str2);
-            return true; // Если объект enum создан успешно для обеих строк, возвращаем true
+            return true;
         } catch (IllegalArgumentException e) {
-            return false; // Если возникла ошибка создания объекта enum хотя бы для одной строки, возвращаем false
+            return false;
         }
     }
 
 
+    /**
+     * Метод calculate анализирует входную строку и выполняет операцию над числами.
+     * Поддерживаются как арабские, так и римские числа.
+     * @throws IllegalArgumentException выбрасывает исключение, если введены недопустимые значения или оператор.
+     */
     public void calculate(){
         String[] inputArr = input.split(" ");
+        char operator;
         if (canConvertToNumber(inputArr[0], inputArr[2]) && containsOperator(inputArr[1])){
             operator = inputArr[1].charAt(0);
             this.a =  Integer.parseInt(inputArr[0]);
@@ -58,57 +88,11 @@ public class Calculator {
             RomanNumeral romanNumeral1 = RomanNumeral.valueOf(inputArr[2]);
             this.a = romanNumeral.getNum();
             this.b = romanNumeral1.getNum();
-            System.out.println(calculation(operator));
+            String res = calculation(operator);
+            System.out.println(RomanNumeral.toRoman(Integer.parseInt(res)));
         }
     }
 
-
-//    public void getData1() {
-//        // String input = prompt();
-//        String[] inputArr = input.split(" ");
-//
-//        if (inputArr[0].charAt(0) == '-') {
-//            try {
-//                this.a = Integer.parseInt(inputArr[0]);
-//            } catch (Exception e) {
-//                System.out.println("Неверный символ " + inputArr[0]);
-//            }
-//
-//        } else {
-//            charA = inputArr[0].charAt(0);
-//        }
-//
-//        operator = inputArr[1].charAt(0);
-//
-//        if (inputArr[2].charAt(0) == '-') {
-//            this.b = Integer.parseInt(inputArr[2]);
-//        } else {
-//            charB = inputArr[2].charAt(0);
-//        }
-//    }
-
-
-//    public String calculate() {
-//        getData();
-//        if (this.a != 0 && this.b != 0) {
-//            return calculation(operator);
-//        }
-//        try {
-//            if (Character.isDigit(charA) && Character.isDigit(charB)) {
-//                this.a = Character.getNumericValue(charA);
-//                this.b = Character.getNumericValue(charB);
-//            } else if ((Character.isDigit(charA) ^ Character.isDigit(charB))) {
-//                throw new Exception("Используются одновременно разные системы счисления");
-//            } else {
-//                RomanNumeral romanNumeral = RomanNumeral.valueOf(String.format("%s", charA));
-//                this.a = romanNumeral.getNum();
-//                this.b = romanNumeral.getNum();
-//            }
-//        } catch (Exception e) {
-//            System.out.println("Ошибка: " + e.getMessage());
-//        }
-//        return calculation(operator);
-//    }
 
     private String calculation(char operator) {
         return switch (operator) {

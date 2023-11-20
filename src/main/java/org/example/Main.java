@@ -2,19 +2,22 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        Calculator calculator1 = new Calculator("I + I");
+        Calculator calculator1 = new Calculator("VI * IX");
         // calculator1.getData();
         calculator1.calculate();
+//
+//        Calculator calculator2 = new Calculator("-10 / -2");
+//        calculator2.calculate();
+//
+//        Calculator calculator3 = new Calculator("III + 3");
+//        calculator3.calculate();
 
-        Calculator calculator2 = new Calculator("-10 / -2");
-        calculator2.calculate();
-
-        Calculator calculator3 = new Calculator("III + 3");
-        calculator3.calculate();
-
-        Calculator calculator4 = new Calculator("-ы + 1");
-        calculator4.calculate();
-
+//        Calculator calculator4 = new Calculator("-ы + 1");
+//        calculator4.calculate();
+//        calculator4.convertToRoman(6);
+//        // System.out.println(RomanNumeral.toRoman(87));
+//        System.out.println(RomanNumeral.toRoman(13));
+//
 
     }
 }
