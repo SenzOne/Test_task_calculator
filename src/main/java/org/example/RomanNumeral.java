@@ -12,4 +12,13 @@ public enum RomanNumeral {
     public int getNum() {
         return num;
     }
+
+    public static RomanNumeral fromInt(int number) {
+        for (RomanNumeral numeral : RomanNumeral.values()) {
+            if (numeral.num == number) {
+                return numeral;
+            }
+        }
+        throw new IllegalArgumentException("Недопустимое значение для римской цифры: " + number);
+    }
 }
