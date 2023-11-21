@@ -1,7 +1,5 @@
 package org.example;
 
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Scanner;
 
 
@@ -19,13 +17,7 @@ class Calculator {
     public Calculator() {
         this.input = prompt();
     }
-    /**
-     * Конструктор класса Calculator.
-     * @param input Строка с математическим выражением.
-     */
-    public Calculator(String input) {
-        this.input = input;
-    }
+
 
     /**
      * Метод containsOperator проверяет наличие оператора в строке.
